@@ -1,0 +1,25 @@
+@import '../../variables.scss';
+
+.header{
+    background-color: $backround-second;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $font-xl;
+    height: 80px;
+    width: 100vw;
+    padding: 0em 2.5em;
+
+    .adder{
+        background-color: $backround-third;
+        color: white;
+        width: 180px;
+        height: 50px;
+        font-size: $font-l;
+        border: none;
+        border-radius: $border-radius;
+        outline: none;
+        cursor: pointer;
+    }
+}
