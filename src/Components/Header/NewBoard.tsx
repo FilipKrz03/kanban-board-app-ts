@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import Cart from "../UI/Cart";
+import { boardsActions } from "../../store/boards-slice";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import { Board } from "../models/Board";
@@ -9,6 +11,7 @@ const NewBoard:React.FC<{onClose:() => void}> = (props) => {
 
   const [isColumnActive, setIsColumnActive] = useState<boolean>(false);
   const [boardTitle , setBoardTitle] = useState<string>('');
+  const dispatch = useDispatch();
 
   const changeCheckboxHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
     setIsColumnActive(event.target.checked);
@@ -26,7 +29,7 @@ const NewBoard:React.FC<{onClose:() => void}> = (props) => {
       thirdList : isColumnActive ,
       todos : [] , 
     }
-   console.log(newBoard);
+   dispatch(boardsActions.addBoard(newBoard));
    setBoardTitle('');
    setIsColumnActive(true);
    props.onClose();
