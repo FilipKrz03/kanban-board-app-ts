@@ -1,0 +1,8 @@
+@import '../../variables.scss';
+
+.cart{
+    background-color: $backround-second;
+    border: 2px solid lightgray;
+    border-radius: $border-radius;
+    padding: 2rem;
+}

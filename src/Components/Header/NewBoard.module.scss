@@ -1,0 +1,46 @@
+@import '../../variables.scss';
+
+.form{
+    display: flex;
+    flex-direction:column;
+    gap: 30px;
+    padding: 1rem;
+    position: relative;
+
+    .close{
+        position: absolute;
+        top: 0%;
+        right: 0%;
+        cursor: pointer;
+        color: $backround-third;
+    }
+
+    &-element{
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        input{
+            background: $backround-color;
+            color: white;
+            border: 1px solid lightgray;
+            outline: none;
+            width: 400px;
+            height: 35px;
+            padding: .2em;
+            font-family: 'Open Sans', sans-serif;
+            font-size: $font-l;
+        }
+    }
+    button{
+        width: 400px;
+        height: 40px;
+        outline: none;
+        border: none;
+        border-radius: $border-radius;
+        background-color: $backround-third;
+        font-size: $font-l;
+        font-family: 'Open Sans', sans-serif;
+        cursor: pointer;
+    }
+   
+}

@@ -9,8 +9,22 @@
   }
 
   .modal{
+    transform: translate(-50%, -50%);
     position: fixed;
     top: 50%;
     left: 50%;
-    z-index: 10;
+    z-index: 30;
+    animation: appear .75s ease-in-out;
+  }
+
+  @keyframes appear {
+
+    from{
+  
+      transform: translate(-50%, 50%) scale(0)
+    }
+
+    to{
+      transform: translate(-50%, -50%) scale(1)
+    }
   }

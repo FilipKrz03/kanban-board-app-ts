@@ -18,6 +18,7 @@ const Modal: React.FC<{ onClose: () => void; children?: React.ReactNode }> = (
 ) => {
   return (
     <React.Fragment>
+       {createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalEl)}
       {createPortal(
         <Backdrop
           onClose={() => {
@@ -26,7 +27,6 @@ const Modal: React.FC<{ onClose: () => void; children?: React.ReactNode }> = (
         />,
         portalEl
       )}
-      {createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalEl)}
     </React.Fragment>
   );
 };
