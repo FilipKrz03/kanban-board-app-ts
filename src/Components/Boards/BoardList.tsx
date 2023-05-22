@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import {useEffect} from 'react';
+import { useSelector , useDispatch } from "react-redux";
+import { boardsActions } from '../../store/boards-slice';
 import { RootState } from "../../store";
 import { Board } from "../models/Board";
 import classes from "./BoardList.module.scss";
@@ -7,13 +8,16 @@ import BoardItem from "./BoardItem";
 
 
 const BoardList = () => {
-  const boards: Board[] = useSelector((state: RootState) => state.board.boards);
-  const numberOfBoards:number = boards.length;
-  const [activeBoardId , setActiveBoardId] = useState<number | undefined>(numberOfBoards > 0 ? boards[0].id : undefined );
 
-  const setActiveIdHandler = (id:number) => {
-    setActiveBoardId(id);
-  }
+  const boards: Board[] = useSelector((state: RootState) => state.board.boards);
+  const dispatch = useDispatch();
+  const numberOfBoards:number = boards.length;
+
+  useEffect(()=>{
+    dispatch(boardsActions.changeActiveBoard(boards[numberOfBoards - 1].id))
+  }, [boards , dispatch , numberOfBoards])
+  
+
 
   return (
     <div className={classes.list}>
@@ -22,8 +26,6 @@ const BoardList = () => {
         {boards.map((board) => {
           return (
               <BoardItem 
-              setActiveId={setActiveIdHandler}
-                activeId = {activeBoardId || undefined}
                 id={board.id}
                 key={board.id}
                 title={board.title}

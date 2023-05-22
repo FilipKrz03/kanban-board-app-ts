@@ -1,4 +1,5 @@
-import {useDispatch} from 'react-redux';
+import {useDispatch , useSelector} from 'react-redux';
+import { RootState } from '../../store';
 import { boardsActions } from '../../store/boards-slice';
 import classes from "./BoardItem.module.scss";
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -8,21 +9,24 @@ const BoardItem: React.FC<{
   title: string;
   id: number;
   key: number;
-  activeId: number | undefined;
-  setActiveId: (id:number) => void , 
 }> = (props) => {
 
   const dispatch = useDispatch();
+  const activeBoardId:number|undefined = useSelector((state : RootState)=> state.board.activeBoard)
 
   const delateBoardHandler = () => {
     dispatch(boardsActions.removeBoard(props.id));
   }
 
+  const setActiveBoard = () => {
+    dispatch(boardsActions.changeActiveBoard(props.id));
+  }
+
   return (
     <li
-    onClick={()=> props.setActiveId(props.id)}
+    onClick={setActiveBoard}
       className={`${classes.item}  ${
-        props.activeId === props.id ? classes.active : ""
+        activeBoardId === props.id ? classes.active : ""
       }`}
     >
       <DashboardIcon className={classes.dashboard} />
