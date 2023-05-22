@@ -17,7 +17,9 @@ const boardsSlice = createSlice({
         } , 
         addItemToBoard(state , action){} , 
         removeItemFromBoard(state , action) {} , 
-        removeBoard(state , action){} , 
+        removeBoard(state , action:PayloadAction<number>){
+           state.boards = state.boards.filter(board => board.id !== action.payload);
+        } , 
     }
 
 })

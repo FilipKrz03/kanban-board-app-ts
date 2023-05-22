@@ -1,8 +1,23 @@
 @import '../../variables.scss';
 
 .item{
+    animation: appear .4s ease-in-out;
     font-size: $font-l;
     cursor: pointer;
+    position: relative;
+
+    .delate{
+        position: absolute;
+        top: 30%;
+        right: 5%;
+        cursor: pointer;
+    }
+    
+    .dashboard{
+        position: absolute;
+        top: 30%;
+        left: 5%;
+    }
 }
 
 .active{
@@ -11,4 +26,14 @@
     background-color: $backround-third;
     color: black;
     border-radius: $border-radius;
+}
+
+@keyframes appear {
+    from{
+        transform: translateX(-80%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+    
 }
