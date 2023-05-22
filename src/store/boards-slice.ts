@@ -6,7 +6,7 @@ interface boardState {
     boards:Board[]
 }
 
-const initialState = {boards:[]} as boardState;
+const initialState  = {boards:[]} as boardState;
 
 const boardsSlice = createSlice({
     name: 'boards' , 

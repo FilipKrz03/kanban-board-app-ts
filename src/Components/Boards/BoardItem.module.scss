@@ -1,0 +1,14 @@
+@import '../../variables.scss';
+
+.item{
+    font-size: $font-l;
+    cursor: pointer;
+}
+
+.active{
+    padding: .75rem;
+    transition: 300ms ease-in-out;
+    background-color: $backround-third;
+    color: black;
+    border-radius: $border-radius;
+}
