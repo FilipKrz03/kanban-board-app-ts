@@ -1,0 +1,18 @@
+@import '../../variables.scss';
+
+.container{
+    width:400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .select{
+        label{
+            color: $backround-third;
+        }
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+}

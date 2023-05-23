@@ -1,38 +1,49 @@
-import React , {useState} from "react"
-import { Subtask } from "../models/Subtask"
+import React, { useState } from "react";
+import { Subtask } from "../models/Subtask";
 import Modal from "../UI/Modal";
-import { Select , MenuItem } from "@mui/material";
-import classes from './BoardContentItem.module.scss';
-import useActiveBoard from "../../hooks/useActiveBoard";
+import classes from "./BoardContentItem.module.scss";
+import BoardContentDetail from "./BoardContentDetail";
 
-const BoardContentItem:React.FC<{
-    id : number , 
-    key : number , 
-    dueList:string
-    description : string , 
-    title : string , 
-    subtasks : Subtask[] , 
+const BoardContentItem: React.FC<{
+  id: number;
+  key: number;
+  dueList: string;
+  description: string;
+  title: string;
+  subtasks: Subtask[];
 }> = (props) => {
+  const [isModalActive, setIsModalActive] = useState<boolean>(false);
 
-    const [isModalActive , setIsModalActive] = useState<boolean>(false)
+  const subtaskLength = props.subtasks.length;
 
-    const subtaskLength = props.subtasks.length;
-    const activeBoard = useActiveBoard();
-   
+  const showModalHandler = () => {
+    setIsModalActive(true);
+  };
 
-    const showModalHandler = (event:React.MouseEvent<HTMLDivElement>) => {
-        setIsModalActive(true);
+  const closeModalHandler = () => {
+    setIsModalActive(false);
+  };
 
-    }
-
-return(
+  return (
     <>
-    <div className={classes.item} onClick={showModalHandler}>
+      <div className={classes.item} onClick={showModalHandler}>
         <h2>{props.title}</h2>
         <p>0 of {subtaskLength} subtasks</p>
-    </div>
+      </div>
+      {isModalActive && (
+        <Modal onClose={closeModalHandler}>
+          <BoardContentDetail
+            id={props.id}
+            key={props.id}
+            description={props.description}
+            dueList={props.dueList}
+            title={props.title}
+            subtasks={props.subtasks}
+          />
+        </Modal>
+      )}
     </>
-)
-}
+  );
+};
 
-export default BoardContentItem
+export default BoardContentItem;
