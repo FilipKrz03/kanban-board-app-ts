@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import {useDispatch } from "react-redux";
+import useActiveBoard from "../../hooks/useActiveBoard";
 import { boardsActions } from "../../store/boards-slice";
 import Cart from "../UI/Cart";
 import Subtask from "./Subtask";
@@ -7,8 +8,6 @@ import { Subtask as subtaskModel } from "../models/Subtask";
 import { Select, MenuItem } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import classes from "./NewTask.module.scss";
-import { RootState } from "../../store";
-import { Board } from "../models/Board";
 
 const NewTask: React.FC<{ onClose: () => void }> = (props) => {
   const dispatch = useDispatch();
@@ -16,13 +15,7 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
   const [subtaks, setSubtask] = useState<subtaskModel[]>([]);
   const [taskNameValue, setTaskNameValue] = useState<string>("");
   const [decriptionValue, setDecriptionValue] = useState<string>("");
-  const activeBoardId: number | undefined = useSelector(
-    (state: RootState) => state.board.activeBoard
-  );
-  const boards: Board[] = useSelector((state: RootState) => state.board.boards);
-  const isThirdList: boolean | undefined = boards.find(
-    (board) => board.id === activeBoardId
-  )?.thirdList;
+  const isThirdList = useActiveBoard()?.thirdList;
 
   const slectChangeHandler = (event: any) => {
     setSelectValue(event.target.value);

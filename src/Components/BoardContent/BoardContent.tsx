@@ -27,6 +27,7 @@ const BoardContent = () => {
             <BoardContentItem
               id={todo.id}
               key={todo.id}
+              dueList = {todo.dueList}
               description={todo.description}
               title={todo.title}
               subtasks={todo.subtasks}
@@ -42,6 +43,7 @@ const BoardContent = () => {
               <BoardContentItem
                 id={todo.id}
                 key={todo.id}
+                dueList = {todo.dueList}
                 description={todo.description}
                 title={todo.title}
                 subtasks={todo.subtasks}
@@ -57,6 +59,7 @@ const BoardContent = () => {
             <BoardContentItem
               id={todo.id}
               key={todo.id}
+              dueList = {todo.dueList}
               description={todo.description}
               title={todo.title}
               subtasks={todo.subtasks}
