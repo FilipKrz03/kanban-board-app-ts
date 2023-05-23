@@ -1,5 +1,7 @@
 import { useState } from "react";
 import classes from "./BoardContentDetail.module.scss";
+import { useDispatch } from "react-redux";
+import { boardsActions } from "../../store/boards-slice";
 import Cart from "../UI/Cart";
 import { Select, MenuItem } from "@mui/material";
 import { Subtask } from "../models/Subtask";
@@ -14,6 +16,8 @@ const BoardContentDetail: React.FC<{
   title: string;
   subtasks: Subtask[];
 }> = (props) => {
+
+  const dispatch = useDispatch();
   const [selectValue, setSelectValue] = useState(props.dueList);
   const activeBoard = useActiveBoard();
 
@@ -28,6 +32,7 @@ const BoardContentDetail: React.FC<{
 
   const selectChangeHandler = (event: any) => {
     setSelectValue(event.target.value);
+    dispatch(boardsActions.changeNoteStatus({itemId:props.id , newStatus:event.target.value}));
   };
 
   return (

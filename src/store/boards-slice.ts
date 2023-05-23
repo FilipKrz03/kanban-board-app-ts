@@ -28,7 +28,15 @@ const boardsSlice = createSlice({
             const subtask = noteItem?.subtasks.find(subtask => subtask.id === action.payload.subtaskId);
             subtask!.active = !subtask!.active;
         } , 
-        removeItemFromBoard(state , action) {} , 
+        changeNoteStatus(state , action:PayloadAction<{itemId:number , newStatus:string}>){
+            const activeBoard = state.boards.find(board => board.id === state.activeBoard);
+            const noteItem = activeBoard!.todos.find(item => item.id === action.payload.itemId);
+            noteItem!.dueList = action.payload.newStatus;
+
+        } ,
+        removeItemFromBoard(state , action) {
+
+        } , 
         removeBoard(state , action:PayloadAction<number>){
            state.boards = state.boards.filter(board => board.id !== action.payload);
         } , 
