@@ -45,7 +45,7 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
 
   const addSubtaskHandler = () => {
     const newSubtasksArray = [...subtaks];
-    newSubtasksArray.push({ id: Math.random().toString(), value: "" });
+    newSubtasksArray.push({ id: Math.random().toString(), value: "" , active : true });
     setSubtask(newSubtasksArray);
   };
 

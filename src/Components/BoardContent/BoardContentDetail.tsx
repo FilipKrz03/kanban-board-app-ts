@@ -15,6 +15,15 @@ const BoardContentDetail: React.FC<{
 }> = (props) => {
   const [selectValue, setSelectValue] = useState(props.dueList);
   const activeBoard = useActiveBoard();
+  
+  const subtaskLength = props.subtasks.length;
+
+  let doneSubtasks: number = 0;
+  props.subtasks.forEach((subtask) => {
+    if (subtask.active !== true) {
+      doneSubtasks++;
+    }
+  });
 
   const selectChangeHandler = (event: any) => {
     setSelectValue(event.target.value);
@@ -25,6 +34,11 @@ const BoardContentDetail: React.FC<{
       <div className={classes.container}>
         <h3>{props.title}</h3>
         <p>{props.description}</p>
+        <div className={classes.subtasks}>
+          <p>
+            Subtasks ( {doneSubtasks} of {subtaskLength} )
+          </p>
+        </div>
         <div className={classes.select}>
           <label htmlFor="select">Current Status</label>
           <Select value={selectValue} onChange={selectChangeHandler}>

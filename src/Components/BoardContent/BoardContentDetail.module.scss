@@ -14,5 +14,23 @@
         flex-direction: column;
         gap: 10px;
     }
-    
+
+
+    .subtasks{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    .subtask-item{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0rem 1rem;
+        justify-content: space-between;
+        background-color: $backround-color;
+    }
 }
+    
+
+ 
+}
+
