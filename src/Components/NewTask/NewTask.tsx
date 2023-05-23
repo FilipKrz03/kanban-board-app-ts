@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector , useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { boardsActions } from "../../store/boards-slice";
 import Cart from "../UI/Cart";
 import Subtask from "./Subtask";
@@ -11,14 +11,18 @@ import { RootState } from "../../store";
 import { Board } from "../models/Board";
 
 const NewTask: React.FC<{ onClose: () => void }> = (props) => {
-  
+  const dispatch = useDispatch();
   const [selectValue, setSelectValue] = useState<string>("todo");
   const [subtaks, setSubtask] = useState<subtaskModel[]>([]);
   const [taskNameValue, setTaskNameValue] = useState<string>("");
   const [decriptionValue, setDecriptionValue] = useState<string>("");
-  const activeBoardId:number|undefined = useSelector((state:RootState) => state.board.activeBoard);
-  const boards:Board[] = useSelector((state:RootState)=> state.board.boards);
-  const isThirdList:boolean|undefined = boards.find(board => board.id === activeBoardId)?.thirdList;
+  const activeBoardId: number | undefined = useSelector(
+    (state: RootState) => state.board.activeBoard
+  );
+  const boards: Board[] = useSelector((state: RootState) => state.board.boards);
+  const isThirdList: boolean | undefined = boards.find(
+    (board) => board.id === activeBoardId
+  )?.thirdList;
 
   const slectChangeHandler = (event: any) => {
     setSelectValue(event.target.value);
@@ -63,6 +67,16 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
 
   const submitFormHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    dispatch(
+      boardsActions.addItemToBoard({
+        id: Math.random(),
+        title: taskNameValue,
+        description: decriptionValue,
+        subtasks: subtaks,
+        dueList: selectValue,
+      })
+    );
+    props.onClose();
   };
 
   return (
@@ -118,7 +132,7 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
             className={classes.select}
           >
             <MenuItem value={"todo"}>Todo</MenuItem>
-           { isThirdList && <MenuItem value={"doing"}>Doing</MenuItem> }
+            {isThirdList && <MenuItem value={"doing"}>Doing</MenuItem>}
             <MenuItem value={"done"}>Done</MenuItem>
           </Select>
         </div>

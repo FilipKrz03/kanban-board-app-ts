@@ -1,5 +1,6 @@
 import { createSlice , PayloadAction } from "@reduxjs/toolkit";
 import { Board } from "../Components/models/Board";
+import { Todo } from "../Components/models/Todo";
 
 
 interface boardState {
@@ -16,7 +17,11 @@ const boardsSlice = createSlice({
         addBoard(state , action:PayloadAction<Board>){
             state.boards.push(action.payload);
         } , 
-        addItemToBoard(state , action){} , 
+        addItemToBoard(state , action:PayloadAction<Todo>){
+            const activeBoard = state.boards.find(board => board.id === state.activeBoard);
+            activeBoard!.todos.push(action.payload);
+
+        } , 
         removeItemFromBoard(state , action) {} , 
         removeBoard(state , action:PayloadAction<number>){
            state.boards = state.boards.filter(board => board.id !== action.payload);
