@@ -9,12 +9,12 @@ import classes from "./NewBoard.module.scss";
 
 const NewBoard:React.FC<{onClose:() => void}> = (props) => {
 
-  const [isColumnActive, setIsColumnActive] = useState<boolean>(false);
+  const [isColumnActive, setIsColumnActive] = useState<boolean>(true);
   const [boardTitle , setBoardTitle] = useState<string>('');
   const dispatch = useDispatch();
 
   const changeCheckboxHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
-    setIsColumnActive(event.target.checked);
+    setIsColumnActive(prevValue => !prevValue);
   }
 
   const titleChangeHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +45,7 @@ const NewBoard:React.FC<{onClose:() => void}> = (props) => {
         <input type="text" id="board" onChange={titleChangeHandler} />
         </div>
         <FormControlLabel
+        value={isColumnActive}
           control={<Checkbox size="medium" color="success" defaultChecked onChange={changeCheckboxHandler} />}
           label="Join doing column ? "
         />
