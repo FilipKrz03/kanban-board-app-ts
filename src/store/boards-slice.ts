@@ -34,7 +34,9 @@ const boardsSlice = createSlice({
             noteItem!.dueList = action.payload.newStatus;
 
         } ,
-        removeItemFromBoard(state , action) {
+        removeItemFromBoard(state , action:PayloadAction<number>) {
+            const activeBoard = state.boards.find(board => board.id === state.activeBoard);
+           activeBoard!.todos =  activeBoard!.todos.filter(todo => todo.id !== action.payload);
 
         } , 
         removeBoard(state , action:PayloadAction<number>){

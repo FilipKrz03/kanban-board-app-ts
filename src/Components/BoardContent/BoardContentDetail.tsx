@@ -2,6 +2,7 @@ import { useState } from "react";
 import classes from "./BoardContentDetail.module.scss";
 import { useDispatch } from "react-redux";
 import { boardsActions } from "../../store/boards-slice";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import Cart from "../UI/Cart";
 import { Select, MenuItem } from "@mui/material";
 import { Subtask } from "../models/Subtask";
@@ -35,9 +36,15 @@ const BoardContentDetail: React.FC<{
     dispatch(boardsActions.changeNoteStatus({itemId:props.id , newStatus:event.target.value}));
   };
 
+  const delateNoteHandler = () => {
+    dispatch(boardsActions.removeItemFromBoard(props.id));
+    console.log(props.id);
+  }
+
   return (
     <Cart>
       <div className={classes.container}>
+        <DeleteForeverIcon className={classes.delate} fontSize="large" onClick={delateNoteHandler} />
         <h3>{props.title}</h3>
         <p>{props.description}</p>
         <div className={classes.subtasks}>
