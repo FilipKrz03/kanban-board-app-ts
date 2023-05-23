@@ -1,0 +1,27 @@
+@import '../../variables.scss';
+
+.subtask{
+    position: relative;
+    input {
+        height: 35px;
+        width: 380px;
+        background: transparent;
+        border: 1px solid lightgray;
+        outline: none;
+        font-size: $font-l;
+        padding: 0.5em;
+        
+    }
+
+    input:focus{
+        border: 2px solid $backround-third;
+    }
+
+    .icon{
+        position: absolute;
+        right: -30px;
+        top: 5px;
+        cursor: pointer;
+    }
+
+}
