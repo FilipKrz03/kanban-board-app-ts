@@ -31,3 +31,9 @@
     transform: translateX(0%);
   }
 }
+
+@include media-board{
+  .list{
+    display: none;
+  }
+}

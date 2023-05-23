@@ -22,4 +22,30 @@
         outline: none;
         cursor: pointer;
     }
+
+    .settings{
+        cursor: pointer;
+    }
+}
+
+
+@include media-m {
+    .header{
+    .adder{
+        width: 100px;
+        height: 45px;
+    }
+}
+}
+
+@include media-s{
+    .header{
+        font-size: $font-l;
+        padding: 0em 0.5em;
+        .adder{
+            font-size: 18px;
+            width:auto;
+            padding: 10px;
+        }
+    }
 }

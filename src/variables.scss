@@ -5,3 +5,29 @@ $font-s:15px;
 $font-l:22px;
 $font-xl:40px;
 $border-radius:25px;
+
+
+
+@mixin media-l {
+    @media (max-width:1300px) {
+        @content;
+    }
+}
+
+@mixin media-m {
+    @media (max-width:800px) {
+        @content;
+    }
+}
+
+@mixin media-s {
+    @media (max-width:450px) {
+        @content;
+    }
+}
+
+@mixin media-board {
+    @media (max-width:600px) {
+        @content;
+    }
+}
