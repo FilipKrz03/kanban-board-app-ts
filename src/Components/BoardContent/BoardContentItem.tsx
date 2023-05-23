@@ -15,6 +15,13 @@ const BoardContentItem: React.FC<{
   const [isModalActive, setIsModalActive] = useState<boolean>(false);
 
   const subtaskLength = props.subtasks.length;
+  ;
+  let doneSubtasks: number = 0;
+  props.subtasks.forEach((subtask) => {
+    if (subtask.active !== true) {
+      doneSubtasks++;
+    }
+  });
 
   const showModalHandler = () => {
     setIsModalActive(true);
@@ -28,7 +35,7 @@ const BoardContentItem: React.FC<{
     <>
       <div className={classes.item} onClick={showModalHandler}>
         <h2>{props.title}</h2>
-        <p>0 of {subtaskLength} subtasks</p>
+        <p>  {doneSubtasks} of {subtaskLength} subtasks </p>
       </div>
       {isModalActive && (
         <Modal onClose={closeModalHandler}>

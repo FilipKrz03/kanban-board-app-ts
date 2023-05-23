@@ -22,6 +22,12 @@ const boardsSlice = createSlice({
             activeBoard!.todos.push(action.payload);
 
         } , 
+        changeSubtaskStatus(state , action:PayloadAction<{itemId:number ,subtaskId:string}>){
+            const activeBoard = state.boards.find(board => board.id === state.activeBoard);
+            const noteItem = activeBoard?.todos.find(item => item.id === action.payload.itemId);
+            const subtask = noteItem?.subtasks.find(subtask => subtask.id === action.payload.subtaskId);
+            subtask!.active = !subtask!.active;
+        } , 
         removeItemFromBoard(state , action) {} , 
         removeBoard(state , action:PayloadAction<number>){
            state.boards = state.boards.filter(board => board.id !== action.payload);

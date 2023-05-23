@@ -4,6 +4,7 @@ import Cart from "../UI/Cart";
 import { Select, MenuItem } from "@mui/material";
 import { Subtask } from "../models/Subtask";
 import useActiveBoard from "../../hooks/useActiveBoard";
+import SubtaskDetail from "./SubtaksDetail";
 
 const BoardContentDetail: React.FC<{
   id: number;
@@ -15,7 +16,7 @@ const BoardContentDetail: React.FC<{
 }> = (props) => {
   const [selectValue, setSelectValue] = useState(props.dueList);
   const activeBoard = useActiveBoard();
-  
+
   const subtaskLength = props.subtasks.length;
 
   let doneSubtasks: number = 0;
@@ -37,6 +38,17 @@ const BoardContentDetail: React.FC<{
         <div className={classes.subtasks}>
           <p>
             Subtasks ( {doneSubtasks} of {subtaskLength} )
+            {props.subtasks.map(subtask => {
+                return(
+                    <SubtaskDetail
+                    itemId = {props.id}
+                    id = {subtask.id}
+                    key={subtask.id}
+                    text={subtask.value}
+                    isActive={subtask.active}
+                    />
+                )
+            })}
           </p>
         </div>
         <div className={classes.select}>
