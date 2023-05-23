@@ -1,30 +1,39 @@
 .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 20;
-    background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  &::-webkit-scrollbar {
+    display: none;
   }
 
-  .modal{
-    transform: translate(-50%, -50%);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 30;
-    animation: appear .4s ease-in-out;
+  .example {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  @keyframes appear {
+  overflow-y: scroll;
+  max-height: 95vh;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 30;
+  animation: appear 0.4s ease-in-out;
+}
 
-    from{
-  
-      transform: translate(-50%, 50%) scale(0)
-    }
-
-    to{
-      transform: translate(-50%, -50%) scale(1)
-    }
+@keyframes appear {
+  from {
+    transform: translate(-50%, 50%) scale(0);
   }
+
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

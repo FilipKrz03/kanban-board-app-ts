@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Cart from "../UI/Cart";
+import Subtask from "./Subtask";
 import { Subtask as subtaskModel } from "../models/Subtask";
 import { Select, MenuItem } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 import classes from "./NewTask.module.scss";
-import Subtask from "./Subtask";
 
-const NewTask = () => {
+
+const NewTask:React.FC<{onClose:()=>void}> = (props) => {
 
   const [selectValue, setSelectValue] = useState<string>("todo");
   const [subtaks , setSubtask] = useState<subtaskModel[]>([]);
@@ -37,11 +39,16 @@ const NewTask = () => {
     const newSubtasks = subtaks.filter(subtask => subtask.id !== id);
     setSubtask(newSubtasks);
    }
+
+   const closeModalHandler = () => {
+    props.onClose();
+   }
   
 
   return (
     <Cart>
       <form className={classes.form}>
+        <CloseIcon className={classes.close} fontSize="large" onClick = {closeModalHandler} />
         <h2>Add New Task</h2>
         <div className={classes["form-element"]}>
           <label htmlFor="taskName">Task Name</label>
@@ -68,7 +75,7 @@ const NewTask = () => {
         </div>
         <div className={classes["form-element"]}>
           <label htmlFor="select">Status</label>
-          <Select onChange={slectChangeHandler} value={selectValue}>
+          <Select onChange={slectChangeHandler} value={selectValue} className={classes.select}>
             <MenuItem value={"todo"}>Todo</MenuItem>
             <MenuItem value={"doing"}>Doing</MenuItem>
             <MenuItem value={"done"}>Done</MenuItem>

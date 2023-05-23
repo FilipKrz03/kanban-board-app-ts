@@ -1,10 +1,19 @@
 @import '../../variables.scss';
 
 .form{
-    
+    padding: 0rem 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
+   
+
+    .close{
+        position: absolute;
+        top: 1%;
+        right: 1%;
+        cursor: pointer;
+    }
 
     .form-element{
         display: flex;
@@ -12,7 +21,7 @@
         flex-direction: column;
 
         input , textarea {
-            width: 380px;
+            width: 400px;
             background: transparent;
             border: 1px solid lightgray;
             outline: none;
@@ -45,5 +54,10 @@
         flex-direction: column;
         gap: 10px;
     }
-   
+
+    .select{
+        color:black;
+        border: 2px solid $backround-third;
+    }
+    
 }

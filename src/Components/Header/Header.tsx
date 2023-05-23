@@ -9,7 +9,8 @@ import Modal from '../UI/Modal';
 
 const Header = () => {
 
-    const [isFormActive , setIsFormActive] = useState(false);
+    const [isFormActive , setIsFormActive] = useState<boolean>(false);
+    const [isNewTaskFormActive , setIsNewTaskFormActive] = useState<boolean>(false);
     const boardsNumber:number = useSelector((state : RootState) => state.board.boards.length);
 
     const closeModalHandler = () => {
@@ -20,13 +21,21 @@ const Header = () => {
         setIsFormActive(true);
     }
 
+    const openTaskModalHandler = () => {
+        setIsNewTaskFormActive(true);
+    }
+
+    const closeTaskModalHandler = () => {
+        setIsNewTaskFormActive(false);
+    }
+
     return(
         <header className={classes.header}>
             <span>Kanban</span>
-            {boardsNumber > 0 && <button className={classes.adder}>+Add new Task</button>}
+            {boardsNumber > 0 && <button className={classes.adder} onClick={openTaskModalHandler}>+Add new Task</button>}
             <button className={classes.adder} onClick={openModalHandler}>+Add new board</button>
             {isFormActive && <Modal onClose={closeModalHandler}><NewBoard onClose={closeModalHandler}/></Modal>}
-            <Modal onClose={closeModalHandler}><NewTask/></Modal>
+           { isNewTaskFormActive &&  <Modal onClose={closeTaskModalHandler}><NewTask onClose={closeTaskModalHandler}/></Modal> }
         </header>
     )
 
