@@ -3,6 +3,8 @@ import {useSelector} from 'react-redux';
 import { RootState } from './store';
 import Header from './Components/Header/Header';
 import BoardList from './Components/Boards/BoardList';
+import BoardContent from './Components/BoardContent/BoardContent';
+
 
 function App() {
   
@@ -12,6 +14,8 @@ function App() {
     <>
      <Header />
     {numberOfBoards > 0 && <BoardList />}
+    {numberOfBoards >0 && <BoardContent />}
+
     </>
   );
 }
