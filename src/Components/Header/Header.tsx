@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import useWidth from "../../hooks/useWidth";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BoardsModal from "../Boards/BoardsModal/BoardsModal";
 import NewTask from "../NewTask/NewTask";
@@ -15,19 +16,9 @@ const Header = () => {
   const boardsNumber: number = useSelector(
     (state: RootState) => state.board.boards.length
   );
-  const [windowWidth, setWindowwidth] = useState(window.innerWidth);
+
+  const windowWidth = useWidth();
  
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowwidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
 
   const closeModalHandler = () => {
     setIsFormActive(false);

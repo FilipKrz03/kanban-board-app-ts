@@ -1,6 +1,6 @@
-import React , {useState , useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import { RootState } from './store';
+import useWidth from './hooks/useWidth';
 import Header from './Components/Header/Header';
 import BoardList from './Components/Boards/BoardList';
 import BoardContent from './Components/BoardContent/BoardContent';
@@ -9,19 +9,10 @@ import BoardContent from './Components/BoardContent/BoardContent';
 function App() {
   
   const numberOfBoards:number = useSelector((state: RootState) => state.board.boards).length;
-  const [windowWidth, setWindowwidth] = useState(window.innerWidth);
+  const windowWidth = useWidth();
+
  
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowwidth(window.innerWidth);
-    };
 
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
 
   return (
     <>
