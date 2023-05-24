@@ -22,15 +22,16 @@ function App() {
 
  
   useEffect(()=>{
-    if(isInitail){
       dispatch(getBoardData());
-      isInitail = false;
-      return;
-    }
   }, [dispatch])
 
   useEffect(()=>{
-    dispatch(saveBoardData(boards , activeBoard));
+    if(isInitail){
+      isInitail = false;
+      return;
+    }if(!isInitail){
+      dispatch(saveBoardData(boards , activeBoard));
+    }
   }, [boards , dispatch , activeBoard]);
 
  
