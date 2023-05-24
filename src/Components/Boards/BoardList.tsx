@@ -7,6 +7,7 @@ import classes from "./BoardList.module.scss";
 import BoardItem from "./BoardItem";
 
 
+
 const BoardList = () => {
 
   const boards: Board[] = useSelector((state: RootState) => state.board.boards);
@@ -17,7 +18,7 @@ const BoardList = () => {
   useEffect(()=>{
     if(activeBoardId !== undefined){
     dispatch(boardsActions.changeActiveBoard(activeBoardId))
-    }
+    } 
   }, [ dispatch , activeBoardId])
   
 

@@ -1,15 +1,37 @@
-import {useSelector} from 'react-redux';
+import { useEffect } from 'react';
+import {useSelector , useDispatch} from 'react-redux';
 import { RootState } from './store';
 import useWidth from './hooks/useWidth';
 import Header from './Components/Header/Header';
+import { saveBoardData } from './store/boards-actions';
+import { getBoardData } from './store/boards-actions';
 import BoardList from './Components/Boards/BoardList';
 import BoardContent from './Components/BoardContent/BoardContent';
+import { AppDispatch } from './store';
+
+let isInitail:boolean = true;
 
 
 function App() {
   
+  const dispatch = useDispatch<AppDispatch>();
   const numberOfBoards:number = useSelector((state: RootState) => state.board.boards).length;
+  const boards = useSelector((state:RootState) => state.board.boards);
+  const activeBoard = useSelector((state:RootState) => state.board.activeBoard);
   const windowWidth = useWidth();
+
+ 
+  useEffect(()=>{
+    if(isInitail){
+      dispatch(getBoardData());
+      isInitail = false;
+      return;
+    }
+  }, [dispatch])
+
+  useEffect(()=>{
+    dispatch(saveBoardData(boards , activeBoard));
+  }, [boards , dispatch , activeBoard]);
 
  
 

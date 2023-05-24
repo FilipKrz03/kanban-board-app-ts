@@ -16,10 +16,10 @@ const SubtaskDetail:React.FC<{itemId:number, id:string , text:string , isActive:
         dispatch(boardsActions.changeSubtaskStatus({itemId : props.itemId , subtaskId : props.id}))
     }
     return(
-        <div className={classes.detail}>
+        <span className={classes.detail}>
             {props.text}
             <Checkbox checked={!isActive} onChange={checkboxChangeHandler} />
-        </div>
+        </span>
     )
 }
 

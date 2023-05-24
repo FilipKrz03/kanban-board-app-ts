@@ -44,9 +44,16 @@ const boardsSlice = createSlice({
         } , 
         changeActiveBoard(state , action:PayloadAction<number>){
             state.activeBoard = action.payload;
-        }
+        } , 
+        replaceData(state , action:PayloadAction<{boards:Board[] , activeBoard:number}>){
+            state.boards = action.payload.boards || [];
+            if(action.payload.activeBoard === 0){
+                state.activeBoard = undefined;
+            }else{
+                state.activeBoard = action.payload.activeBoard;
+            }
+        } , 
     }
-
 })
 
 export const boardsActions = boardsSlice.actions;
