@@ -17,7 +17,7 @@ export const saveBoardData = (
 
 export const getBoardData = () => {
   return (dispatch: any) => {
-    const boards = JSON.parse(localStorage.getItem("boards") || '{}') ;
+    const boards = JSON.parse(localStorage.getItem("boards") || '[]') ;
     const activeBoard = JSON.parse(localStorage.getItem("activeBoard") || "0") ;
     dispatch(boardsActions.replaceData({ boards, activeBoard }));
   };
