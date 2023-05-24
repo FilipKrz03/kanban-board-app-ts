@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import useInput from '../../hooks/useInput';
 import classes from './Subtask.module.scss';
 import DeleteIcon from '@mui/icons-material/Delete';
 

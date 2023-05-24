@@ -16,7 +16,6 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
   const dispatch = useDispatch();
   const [selectValue, setSelectValue] = useState<string>("todo");
   const [subtaks, setSubtask] = useState<subtaskModel[]>([]);
-  const [decriptionValue, setDecriptionValue] = useState<string>("");
   const isThirdList = useActiveBoard()?.thirdList;
 
   const {
@@ -32,7 +31,7 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
     hasError : hasDescriptionError , 
     blurHandler : descriptionBlurHandler , 
     changeHandler : descriptionChangeHandler , 
-    reset : descriptionHandler , 
+    reset : descriptionResetHandler , 
   } = useInput((value) => value.length > 0);
 
 
@@ -75,11 +74,13 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
       boardsActions.addItemToBoard({
         id: Math.random(),
         title: taskNameValue,
-        description: decriptionValue,
+        description: descriptionValue,
         subtasks: subtaks,
         dueList: selectValue,
       })
     );
+    taskResetHandler();
+    descriptionResetHandler();
     props.onClose();
   };
 
