@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+##Features : 
+Adding / editting boards and tadks on each board, Each task has own status and subtasks. Also task and board inputs are validated 
+
 ## Available Scripts
 
 In the project directory, you can run:
