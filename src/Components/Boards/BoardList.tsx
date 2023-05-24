@@ -12,10 +12,12 @@ const BoardList = () => {
   const boards: Board[] = useSelector((state: RootState) => state.board.boards);
   const dispatch = useDispatch();
   const numberOfBoards:number = boards.length;
-  const activeBoardId = boards[numberOfBoards-1].id;
+  const activeBoardId = numberOfBoards > 0 ? boards[numberOfBoards-1].id : undefined;
 
   useEffect(()=>{
+    if(activeBoardId !== undefined){
     dispatch(boardsActions.changeActiveBoard(activeBoardId))
+    }
   }, [ dispatch , activeBoardId])
   
 

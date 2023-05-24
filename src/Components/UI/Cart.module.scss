@@ -6,3 +6,10 @@
     border-radius: $border-radius;
     padding: 2rem;
 }
+
+
+@include media-board {
+    .cart{
+    padding: 1rem;
+    }
+}

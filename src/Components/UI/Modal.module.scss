@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -37,3 +39,4 @@
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
