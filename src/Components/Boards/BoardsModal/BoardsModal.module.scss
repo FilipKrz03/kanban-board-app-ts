@@ -1,0 +1,9 @@
+.container{
+    position: relative;
+    .icon {
+        position: absolute;
+        top: 1%;
+        right: 1%;
+        cursor: pointer;
+    }
+}
