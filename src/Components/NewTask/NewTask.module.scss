@@ -21,7 +21,7 @@
         flex-direction: column;
 
         input , textarea {
-            width: 400px;
+          max-width: 400px;
             background: transparent;
             border: 1px solid lightgray;
             outline: none;
@@ -60,4 +60,17 @@
         border: 2px solid $backround-third;
     }
       
+}
+
+@include media-board{
+    .form{
+        padding: 0;
+        &-element{
+            input , textarea {
+                width: auto;
+                width: 80vw;
+            }
+        }
+    }
+   
 }

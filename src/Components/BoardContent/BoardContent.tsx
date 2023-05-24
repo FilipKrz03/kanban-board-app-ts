@@ -21,7 +21,7 @@ const BoardContent = () => {
   return (
     <div className={classes.list}>
       <div className={classes["list-item"]}>
-        <p>Todo</p>
+        <p>Todo {todos?.length === 0 && '(empty)' }</p>
         {todos?.map((todo) => {
           return (
             <BoardContentItem
@@ -37,7 +37,7 @@ const BoardContent = () => {
       </div>
       {isThirdList && (
         <div className={classes["list-item"]}>
-          <p>Doing</p>
+          <p>Doing {doing?.length === 0 && "(empty)"} </p>
           {doing?.map((todo) => {
             return (
               <BoardContentItem
@@ -53,7 +53,7 @@ const BoardContent = () => {
         </div>
       )}
       <div className={classes["list-item"]}>
-        <p>Done</p>
+        <p>Done {done?.length === 0 && "(empty)"}</p>
         {done?.map((todo) => {
           return (
             <BoardContentItem

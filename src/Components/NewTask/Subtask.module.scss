@@ -25,3 +25,11 @@
     }
 
 }
+
+@include media-board{
+    .subtask{
+        input{
+            width: 50vw;
+        }
+    }
+}
