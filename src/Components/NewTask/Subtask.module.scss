@@ -33,3 +33,9 @@
         }
     }
 }
+
+.invalid{
+    input , textarea{
+       border: 2px solid red!important;
+    }
+}

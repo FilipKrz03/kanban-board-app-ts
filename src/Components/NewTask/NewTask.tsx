@@ -3,6 +3,8 @@ import {useDispatch } from "react-redux";
 import useActiveBoard from "../../hooks/useActiveBoard";
 import { boardsActions } from "../../store/boards-slice";
 import Cart from "../UI/Cart";
+import InvalidInput from "../UI/InvalidInput";
+import useInput from "../../hooks/useInput";
 import Subtask from "./Subtask";
 import { Subtask as subtaskModel } from "../models/Subtask";
 import { Select, MenuItem } from "@mui/material";
@@ -10,26 +12,35 @@ import CloseIcon from "@mui/icons-material/Close";
 import classes from "./NewTask.module.scss";
 
 const NewTask: React.FC<{ onClose: () => void }> = (props) => {
+
   const dispatch = useDispatch();
   const [selectValue, setSelectValue] = useState<string>("todo");
   const [subtaks, setSubtask] = useState<subtaskModel[]>([]);
-  const [taskNameValue, setTaskNameValue] = useState<string>("");
   const [decriptionValue, setDecriptionValue] = useState<string>("");
   const isThirdList = useActiveBoard()?.thirdList;
 
+  const {
+    inputValue : taskNameValue , 
+    hasError : hasTaskNameError , 
+    blurHandler : taskNameBlurHandler , 
+    changeHandler : taskNameChangeHandler , 
+    reset : taskResetHandler , 
+  } = useInput((value) => value.length > 0);
+
+  const {
+    inputValue : descriptionValue , 
+    hasError : hasDescriptionError , 
+    blurHandler : descriptionBlurHandler , 
+    changeHandler : descriptionChangeHandler , 
+    reset : descriptionHandler , 
+  } = useInput((value) => value.length > 0);
+
+
+ 
   const slectChangeHandler = (event: any) => {
     setSelectValue(event.target.value);
   };
 
-  const taskChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTaskNameValue(event.target.value);
-  };
-
-  const descriptionChangeHandler = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setDecriptionValue(event.target.value);
-  };
 
   const subtaskChangeHandler = (value: string, id: string) => {
     const changedArray = subtaks.map((item) => {
@@ -72,6 +83,9 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
     props.onClose();
   };
 
+
+  
+
   return (
     <Cart>
       <form className={classes.form} onSubmit={submitFormHandler}>
@@ -81,25 +95,29 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
           onClick={closeModalHandler}
         />
         <h2>Add New Task</h2>
-        <div className={classes["form-element"]}>
+        <div className={`${classes['form-element']} ${hasTaskNameError && classes.invalid}`}>
           <label htmlFor="taskName">Task Name</label>
           <input
             type="text"
             id="taskName"
             value={taskNameValue}
-            onChange={taskChangeHandler}
+            onChange={taskNameChangeHandler}
+            onBlur={taskNameBlurHandler}
           />
+          {hasTaskNameError && <InvalidInput />}
         </div>
-        <div className={classes["form-element"]}>
+        <div className={`${classes['form-element']} ${hasDescriptionError && classes.invalid}`}>
           <label htmlFor="description">Description</label>
           <textarea
             name="text"
             id="decription"
             cols={30}
             rows={7}
-            value={decriptionValue}
+            value={descriptionValue}
             onChange={descriptionChangeHandler}
+            onBlur={descriptionBlurHandler}
           />
+          {hasDescriptionError && <InvalidInput />}
         </div>
         <div className={`${classes["form-element"]} ${classes.subtasks} `}>
           <label htmlFor="subtasks">Subtasks</label>

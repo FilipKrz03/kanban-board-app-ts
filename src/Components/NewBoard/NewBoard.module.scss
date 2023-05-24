@@ -1,67 +1,72 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
-.form{
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 1rem;
+  position: relative;
+
+  .close {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    cursor: pointer;
+    color: $backround-third;
+  }
+
+  &-element {
     display: flex;
-    flex-direction:column;
-    gap: 30px;
-    padding: 1rem;
-    position: relative;
-
-    .close{
-        position: absolute;
-        top: 0%;
-        right: 0%;
-        cursor: pointer;
-        color: $backround-third;
+    gap: 5px;
+    flex-direction: column;
+    input {
+      background: $backround-color;
+      color: white;
+      border: 1px solid lightgray;
+      outline: none;
+      min-width: 400px;
+      max-width: 400;
+      height: 35px;
+      padding: 0.2em;
+      font-family: "Open Sans", sans-serif;
+      font-size: $font-l;
     }
-
-    &-element{
-        display: flex;
-        gap: 5px;
-        flex-direction: column;
-        input{
-            background: $backround-color;
-            color: white;
-            border: 1px solid lightgray;
-            outline: none;
-            min-width: 400px;
-            max-width: 400;
-            height: 35px;
-            padding: .2em;
-            font-family: 'Open Sans', sans-serif;
-            font-size: $font-l;
-        }
-    }
-    button{
-        max-width: 400px;
-        min-width: 400px;
-        height: 40px;
-        outline: none;
-        border: none;
-        border-radius: $border-radius;
-        background-color: $backround-third;
-        font-size: $font-l;
-        font-family: 'Open Sans', sans-serif;
-        cursor: pointer;
-    }
-   
+  }
+  button {
+    max-width: 400px;
+    min-width: 400px;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: $border-radius;
+    background-color: $backround-third;
+    font-size: $font-l;
+    font-family: "Open Sans", sans-serif;
+    cursor: pointer;
+  }
 }
 
+@include media-board {
+  .form {
+    padding: 0;
+    width: 80vw;
 
-@include media-board{
-    .form{
-        padding: 0;
-        width: 80vw;
-
-        &-element{
-            input{
-                max-width: 80vw;
-                min-width: 80vw;
-            }
-        }
-        button{
-            max-width: 80vw;
-            min-width: 80vw;
-        }
+    &-element {
+      input {
+        max-width: 80vw;
+        min-width: 80vw;
+      }
     }
+    button {
+      max-width: 80vw;
+      min-width: 80vw;
+    }
+  }
+}
+
+.invalid {
+  input,
+  textarea {
+    border: 2px solid red !important;
+  }
 }
