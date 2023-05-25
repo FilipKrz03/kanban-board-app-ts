@@ -21,6 +21,7 @@ const NewBoard:React.FC<{onClose:() => void}> = (props) => {
     blurHandler : boardTitleBlurHandler , 
     changeHandler : boardTitleChangeHandler , 
     reset : boardTitleResetHandler , 
+    isValid : isBoardTitleValid , 
   } = useInput((value) => value.length > 0);
 
 
@@ -42,6 +43,12 @@ const NewBoard:React.FC<{onClose:() => void}> = (props) => {
    props.onClose();
   }
 
+  let isDisabled = false ;
+
+  if(!isBoardTitleValid){
+    isDisabled = true;
+  }
+  
   return (
     <Cart>
       <form className={classes.form} onSubmit={submitFormHandler}>
@@ -58,7 +65,7 @@ const NewBoard:React.FC<{onClose:() => void}> = (props) => {
           control={<Checkbox size="medium" color="success" defaultChecked onChange={changeCheckboxHandler} />}
           label="Join doing column ? "
         />
-        <button>Add Board</button>
+        <button disabled={isDisabled}>Add Board</button>
       </form>
     </Cart>
   );

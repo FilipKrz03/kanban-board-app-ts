@@ -33,6 +33,10 @@
     }
   }
   button {
+    &:disabled{
+      cursor: not-allowed;
+      background-color: lightgray;
+    }
     max-width: 400px;
     min-width: 400px;
     height: 40px;

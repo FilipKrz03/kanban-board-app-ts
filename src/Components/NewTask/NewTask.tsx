@@ -24,6 +24,7 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
     blurHandler : taskNameBlurHandler , 
     changeHandler : taskNameChangeHandler , 
     reset : taskResetHandler , 
+    isValid : isTaskNameValid
   } = useInput((value) => value.length > 0);
 
   const {
@@ -32,6 +33,7 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
     blurHandler : descriptionBlurHandler , 
     changeHandler : descriptionChangeHandler , 
     reset : descriptionResetHandler , 
+    isValid : isDescriptionValid , 
   } = useInput((value) => value.length > 0);
 
 
@@ -85,6 +87,11 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
   };
 
 
+  let isDisbled = false;
+
+  if(!isDescriptionValid || !isTaskNameValid){
+    isDisbled = true;
+  }
   
 
   return (
@@ -148,7 +155,7 @@ const NewTask: React.FC<{ onClose: () => void }> = (props) => {
             <MenuItem value={"done"}>Done</MenuItem>
           </Select>
         </div>
-        <button>Create Task</button>
+        <button disabled={isDisbled}>Create Task</button>
       </form>
     </Cart>
   );

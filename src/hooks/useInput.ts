@@ -26,6 +26,7 @@ const useInput = (validateFn: (inputValue: string) => boolean) => {
     blurHandler , 
     changeHandler , 
     reset , 
+    isValid
   }
 };
 

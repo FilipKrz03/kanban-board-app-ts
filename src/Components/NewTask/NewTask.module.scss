@@ -40,6 +40,10 @@
     }
 
     button{
+        &:disabled{
+            cursor: not-allowed;
+            background-color: lightgray;
+          }
         height: 40px;
         border-radius: $border-radius;
         background-color: $backround-third;
